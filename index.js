@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 //process.env.PORT From system //PORT with ip ex.localhost are ip
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
  
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
