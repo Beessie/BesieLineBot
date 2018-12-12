@@ -36,11 +36,12 @@ app.post('/webhook', (req, res) => {
         let replyToken = events.replyToken;
         let type = events.type;
         //--------------------//
+        let message = [];
 
         switch (type) {
             //Event--> Text,Sticker
             case 'message':
-                const message = {
+                message = {
                     type: 'text',
                     text: 'HELLO'
                 };
@@ -48,7 +49,7 @@ app.post('/webhook', (req, res) => {
                 break;
                 //Event--> add Friend or unblock
             case 'follow':
-                const message = {
+                message = {
                     type: 'text',
                     text: 'Thx'
                 };
@@ -56,7 +57,7 @@ app.post('/webhook', (req, res) => {
                 break;
                 //Event-->UnFriend or block
             case 'unfollow':
-                const message = {
+                message = {
                     type: 'text',
                     text: 'Unfriend Why?'
                 };
