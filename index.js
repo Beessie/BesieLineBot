@@ -89,7 +89,7 @@ app.post('/webhook', (req, res) => {
 //---------------------------------------//
 
 //-------------Function------------------//
-const reply = (replyToken, message) => {
+const replyMessage = (replyToken, message) => {
     client.replyMessage('<replyToken>', message)
     .then(() => {
         console.log(`Reply Successfully!`);
