@@ -6,20 +6,7 @@ const line = require('@line/bot-sdk');
 const firebase = require("firebase-admin");
 //-------------------------------------
 
-//-------------firebase----------------//
-const serviceAccount = require('./config/besie-linebot-firebase-adminsdk-4zrsn-c4f198efd8.json');
-firebase.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://besie-linebot.firebaseio.com"
-});
-
-return firebase.database().ref('/kb/').once('value')
-.then(snapshot => {
-    // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    console.log("Get Firebase");
-    console.log(snapshot.val());
-
-  });
+var datafirebase;
 
 //-------------Intitial-------------//
 const app = express();
@@ -41,8 +28,28 @@ app.get('/', (req, res) => {
 
 });
 
+//-------------firebase----------------//
+const serviceAccount = require('./config/besie-linebot-firebase-adminsdk-4zrsn-c4f198efd8.json');
+firebase.initializeApp({
+    credential: firebase.credential.cert(serviceAccount),
+    databaseURL: "https://besie-linebot.firebaseio.com"
+});
 
-//for connect line
+firebase.database().ref('/kb/').once('value')
+.then(snapshot => {
+    // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    console.log("Get Firebase");
+    console.log(snapshot.val());
+
+  });
+
+
+//------------for connect line
+app.get('/', (req, res) => {
+    console.log(datafirebase);
+    res.send({status: "OK", data: datafirebase});
+});
+
 app.post('/webhook', (req, res) => {
     console.log('POST /');
     console.log('body');
