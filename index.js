@@ -40,7 +40,7 @@ firebase.database().ref('/kb/').once('value')
     // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
     console.log("Get Firebase");
     console.log(snapshot.val());
-    datafirebase.snapshot.val();
+    datafirebase = snapshot.val();
 
   });
 
