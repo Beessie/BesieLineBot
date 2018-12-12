@@ -6,7 +6,6 @@ const line = require('@line/bot-sdk');
 const firebase = require("firebase-admin");
 //-------------------------------------
 
-var datafirebase;
 
 //-------------Intitial-------------//
 const app = express();
@@ -35,11 +34,13 @@ firebase.initializeApp({
     databaseURL: "https://besie-linebot.firebaseio.com"
 });
 
+var datafirebase = {};
 firebase.database().ref('/kb/').once('value')
 .then(snapshot => {
     // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
     console.log("Get Firebase");
     console.log(snapshot.val());
+    datafirebase.snapshot.val();
 
   });
 
