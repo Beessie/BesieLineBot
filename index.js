@@ -37,7 +37,6 @@ firebase.initializeApp({
 var datafirebase = {};
 firebase.database().ref('/kb/').once('value')
 .then(snapshot => {
-    // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
     console.log("Get Firebase");
     console.log(snapshot.val());
     datafirebase = snapshot.val();
@@ -45,9 +44,9 @@ firebase.database().ref('/kb/').once('value')
   });
 
 
-//------------for connect line
+//------------for connect line--------------------//
 app.get('/', (req, res) => {
-    console.log(datafirebase);
+    console.log("Get/ ");
     res.send({status: "OK", data: datafirebase});
 });
 
