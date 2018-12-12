@@ -27,7 +27,8 @@ app.get('/', (req, res) => {
 //for connect line
 app.post('/webhook', (req, res) => {
     console.log('POST /');
-
+    console.log('body');
+    console.log(req.body);
     //Check Empty object
     if (Object.keys(req.body).length !== 0) {
         let body = req.body;
@@ -77,6 +78,7 @@ app.post('/webhook', (req, res) => {
 
 //-------------Function------------------//
 const replyMessage = (replyToken, message) => {
+    console.log(`->replyMessage:: replyToken: ${replyToken}, message: ${message})`);
     client.replyMessage(replyToken, message)
         .then(() => {
             console.log(`Reply Successfully!`);
@@ -86,6 +88,7 @@ const replyMessage = (replyToken, message) => {
         });
 }
 const pushMessage = (userID, message) => {
+    console.log(`->pushMessage:: userID: ${userID}, message: ${message})`);
     client.pushMessage(userID, message)
         .then(() => {
             console.log(`Reply Successfully!`);
