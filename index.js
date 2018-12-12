@@ -31,7 +31,7 @@ app.post('/webhook', (req, res) => {
     //Check Empty object
     if (Object.keys(req.body).length !== 0) {
         let body = req.body;
-        let events = body.events;
+        let events = body.events[0];
         //---------Param-------///     
         let replyToken = events.replyToken;
         let type = events.type;
