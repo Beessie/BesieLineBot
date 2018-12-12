@@ -7,7 +7,7 @@ const line = require('@line/bot-sdk');
 const app = express();
 const PORT = process.env.PORT || 5000; //process.env.PORT From system //PORT with ip ex.localhost are ip
 const client = new line.Client({
-    channelAccessToken: '<channel access token>'
+    channelAccessToken: 'ZZSw8EgXeCrX04FfO1UfQuPzxs7R8KeY6wFPkBFtkSJvr2083VQgyvd/vesiypHXaQFPqogoj66f8V3zEZYqfWv1sYPho8DJJ5TDfUSU0HHes2qyjt5Q1+vUk7YsZMnk2NY6/TgY1b2nQd87nnVawAdB04t89/1O/w1cDnyilFU='
 });
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -53,7 +53,7 @@ app.post('/webhook', (req, res) => {
                     text: 'Thx'
                 };
                 replyMessage(replyToken, message);
-                    break;
+                break;
                 //Event-->UnFriend or block
             case 'unfollow':
                 const message = {
@@ -66,20 +66,6 @@ app.post('/webhook', (req, res) => {
             default:
                 break;
         }
-
-        // const message = {
-        //     type: 'text',
-        //     text: 'Hello World!'
-        // };
-
-        // client.replyMessage('<replyToken>', message)
-        //     .then(() => {
-        //         console.log(`Replr Successfully!`);
-        //     })
-        //     .catch((err) => {
-        //         console.log(`Error: ${err}`);
-        //     });
-
     } else {
         res.status(400).send({
             errorMessage: 'body is empty'
@@ -90,22 +76,22 @@ app.post('/webhook', (req, res) => {
 
 //-------------Function------------------//
 const replyMessage = (replyToken, message) => {
-    client.replyMessage('<replyToken>', message)
-    .then(() => {
-        console.log(`Reply Successfully!`);
-    })
-    .catch((err) => {
-        console.log(`Error is error: ${err}`);
-    });
+    client.replyMessage(replyToken, message)
+        .then(() => {
+            console.log(`Reply Successfully!`);
+        })
+        .catch((err) => {
+            console.log(`Error is error: ${err}`);
+        });
 }
 const pushMessage = (userID, message) => {
-    client.pushMessage('<replyToken>', message)
-    .then(() => {
-        console.log(`Reply Successfully!`);
-    })
-    .catch((err) => {
-        console.log(`Error is error: ${err}`);
-    });
+    client.pushMessage(userID, message)
+        .then(() => {
+            console.log(`Reply Successfully!`);
+        })
+        .catch((err) => {
+            console.log(`Error is error: ${err}`);
+        });
 }
 
 //---------------------------------------//
